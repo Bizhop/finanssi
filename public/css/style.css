@@ -15,25 +15,8 @@ p {
 
 #chatInput {
 	float: left;
-	width: 430px;
+	width: 450px;
 	margin-top: 10px;
-}
-
-.button {
-	float: right;
-	font-family: Arial, sans-serif;
-	font-size: 14px;
-	font-weight: bold;
-	display: block;
-	padding: 6px;
-	border: 1px solid #0000FF;
-	margin: 6px 0 0 0;
-	background-color: #26BDFF;
-}
-
-a {
-	text-decoration: none;
-	color: white;
 }
 
 body {
