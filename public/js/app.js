@@ -1,6 +1,6 @@
 $(function() {
 	$("#alert").hide();
-	var button = $("#send");
+	//var button = $("#send");
 	var server = "http://finanssi.nuthou.se:8080";
 	var name = prompt("Enter your nickname", "default");
 	if(name != null) {
@@ -8,26 +8,28 @@ $(function() {
 	}
 	doPoll();
 	
-	button.on("click", function(event) {
-		var chatmessage = new Object();
-		chatmessage.user = $("#user").val();
-		chatmessage.message = $("#chatInput").val();
-		var jsonMessage = JSON.stringify(chatmessage);
-		$.ajax({
-			type: "POST",
-			url: server + "/chat",
-			data: jsonMessage,
-			contentType: "application/json",
-			dataType: "json",
-			crossDomain: true,
-			success: function(data) {
-				printChat(data);
-				$("#chatInput").val("");
-			},
-			failure: function(errMsg) {
-	            $("#alert").show();
-	        }
-		});
+	$("#chatInput").keyup(function(event) {
+		if(event.keyCode == 13) {
+			var chatmessage = new Object();
+			chatmessage.user = $("#user").val();
+			chatmessage.message = $("#chatInput").val();
+			var jsonMessage = JSON.stringify(chatmessage);
+			$.ajax({
+				type: "POST",
+				url: server + "/chat",
+				data: jsonMessage,
+				contentType: "application/json",
+				dataType: "json",
+				crossDomain: true,
+				success: function(data) {
+					printChat(data);
+					$("#chatInput").val("");
+				},
+				failure: function(errMsg) {
+		            		$("#alert").show();
+		        		}
+			});
+		}
 	});
 	
 	function printChat(data) {
