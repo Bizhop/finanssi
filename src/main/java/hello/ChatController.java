@@ -2,7 +2,6 @@ package hello;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,7 +25,7 @@ public class ChatController {
 	public Chat postMessage(@RequestBody ChatMessage message ) {
 		System.out.println(message.getUser() + ": " + message.getMessage());
 		if(message.getMessage().startsWith("!roll")) {
-			Set<Integer> dice = DiceRoller.roll("2d6");
+			List<Integer> dice = DiceRoller.roll("2d6");
 			StringBuilder dieRoll = new StringBuilder();
 			for(Integer die : dice) {
 				dieRoll.append("[" + die + "] ");
