@@ -31,7 +31,7 @@ public class ChatController {
 			for(Integer die : dice) {
 				dieRoll.append("[" + die + "] ");
 			}
-			ChatMessage system = new ChatMessage(dieRoll, "system");
+			ChatMessage system = new ChatMessage(dieRoll.toString(), "system");
 			messages.add(system);
 		}
 		else {
