@@ -24,17 +24,11 @@ public class ChatController {
 	@RequestMapping(value = "chat", method = RequestMethod.POST)
 	public Chat postMessage(@RequestBody ChatMessage message ) {
 		System.out.println(message.getUser() + ": " + message.getMessage());
+		messages.add(message);
 		if(message.getMessage().startsWith("!roll")) {
-			List<Integer> dice = DiceRoller.roll("2d6");
-			StringBuilder dieRoll = new StringBuilder();
-			for(Integer die : dice) {
-				dieRoll.append("[" + die + "] ");
-			}
-			ChatMessage system = new ChatMessage(dieRoll.toString(), "system");
+			Dice dice = DiceRoller.roll(message.getMessage());
+			ChatMessage system = new ChatMessage(dice, "system");
 			messages.add(system);
-		}
-		else {
-			messages.add(message);
 		}
 		return new Chat(messages);
 	}
