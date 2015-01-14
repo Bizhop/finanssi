@@ -9,6 +9,7 @@ public class DiceRoller {
 
 	public static Dice roll(String command) {
 		//set 1d6 as default
+		String message = "doing 1d6";
 		int rolls = 1;
 		int type = 6;
 
@@ -21,11 +22,12 @@ public class DiceRoller {
 				if (splitted.length == 2) {
 					rolls = Integer.parseInt(splitted[0]);
 					type = Integer.parseInt(splitted[1]);
+					//parse successful
+					message = parseThis;
 				}
 			}
 		} catch (Exception e) {
 			//fall back to default if parsing fails
-			command = "parse failed, doing 1d6";
 			rolls = 1;
 			type = 6;
 		}
@@ -34,6 +36,6 @@ public class DiceRoller {
 		for(int i = 0; i < rolls; i++) {
 			dice.add(generator.nextInt(type) + 1);
 		}
-		return new Dice(dice, command);
+		return new Dice(dice, message);
 	}
 }
