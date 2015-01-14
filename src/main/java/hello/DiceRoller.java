@@ -25,6 +25,7 @@ public class DiceRoller {
 			}
 		} catch (Exception e) {
 			//fall back to default if parsing fails
+			command = "parse failed, doing 1d6";
 			rolls = 1;
 			type = 6;
 		}

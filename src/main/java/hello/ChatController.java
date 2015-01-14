@@ -27,7 +27,7 @@ public class ChatController {
 		messages.add(message);
 		if(message.getMessage().startsWith("!roll")) {
 			Dice dice = DiceRoller.roll(message.getMessage());
-			ChatMessage system = new ChatMessage(dice, "system");
+			ChatMessage system = new ChatMessage(dice.toString(), "system");
 			messages.add(system);
 		}
 		return new Chat(messages);
