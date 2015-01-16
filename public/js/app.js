@@ -7,6 +7,7 @@ $(function() {
 		$("#user").val(name);
 	}
 	doPoll();
+	rollChatDown();
 	
 	$("#chatInput").keyup(function(event) {
 		if(event.keyCode == 13) {
@@ -24,6 +25,7 @@ $(function() {
 				success: function(data) {
 					printChat(data);
 					$("#chatInput").val("");
+					rollChatDown();
 				},
 				failure: function(errMsg) {
 		            		$("#alert").show();
@@ -52,5 +54,9 @@ $(function() {
 			}
 		});
 		setTimeout(doPoll,1000);
+	};
+
+	function rollChatDown() {
+		$("#chat").stop().animate({scrollTop: $("#chat")[0].scrollHeight},1000);
 	};
 });

@@ -25,7 +25,7 @@ public class ChatController {
 	public Chat postMessage(@RequestBody ChatMessage message ) {
 		System.out.println(message.getUser() + ": " + message.getMessage());
 		messages.add(message);
-		if(message.getMessage().startsWith("!roll")) {
+		if(message.getMessage().startsWith("!roll ") || message.getMessage().equals("!roll")) {
 			Dice dice = DiceRoller.roll(message.getMessage());
 			ChatMessage system = new ChatMessage(dice.toString(), "system");
 			messages.add(system);

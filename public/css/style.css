@@ -4,6 +4,7 @@
 }
 
 #chat {
+	overflow: auto;
 	height: 450px;
 	border: 1px solid black;
 }
@@ -14,9 +15,8 @@ p {
 }
 
 #chatInput {
-	float: left;
 	width: 500px;
-	margin-top: 10px;
+	margin-bottom: 10px;
 }
 
 body {
