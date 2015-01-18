@@ -6,6 +6,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.PathVariable;
+import java.util.List;
 
 /**
  * Created by ville on 17.1.2015.
@@ -44,4 +46,14 @@ public class UserController {
             return HttpStatus.UNAUTHORIZED;
         }
     }
+
+	@RequestMapping(method = RequestMethod.GET)
+	public List<User> list() {
+		return repository.findAll();
+	}
+
+	@RequestMapping(value = "{userName}", method = RequestMethod.GET)
+	public User getUser(@PathVariable String userName) {
+		return repository.findByUserName(userName);
+	}
 }
