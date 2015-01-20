@@ -38,9 +38,9 @@ $(function() {
 		var messages = data.messages;
 		var chatHtml = "";
 		for(var i=0; i < messages.length; i++) {
-			chatHtml += "<p>" + messages[i].user + ": " + messages[i].message + "</p>";
+			chatHtml += "<tr><td>" + messages[i].user + "</td><td>" + messages[i].message + "</td></tr>";
 		}
-		$("#chat").html(chatHtml);
+		$("#chatTable").html(chatHtml);
 		$("#alert").hide();
 	};
 	
