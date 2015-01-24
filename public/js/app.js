@@ -47,7 +47,7 @@ $(function() {
 		$.ajax({
 			type: "GET",
 			url: server + "/chat",
-			data: {"lastRequest",messagesUntil},
+			data: {"lastRequest": messagesUntil},
 			dataType: "json",
 			success: function(messages) {
 //				var messages = data.messages;
