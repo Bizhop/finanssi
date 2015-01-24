@@ -40,7 +40,7 @@ public class ChatController {
         }
 	}
 	
-	@RequestMapping(value = "chat", method = RequestMethod.POST)
+	@RequestMapping(method = RequestMethod.POST)
 	public HttpStatus postMessage(@RequestBody ChatMessage message ) {
 		System.out.println(message.getUser() + ": " + message.getMessage());
         repository.save(message);
