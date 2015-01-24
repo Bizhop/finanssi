@@ -3,18 +3,18 @@ package finanssi.model;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import java.time.Instant;
+import java.util.Date;
 
 public class ChatMessage {
 	private String message;
 	private String user;
-    private Instant timestamp;
+    private Date timestamp;
 
 	@JsonCreator
 	public ChatMessage(@JsonProperty("message") String message, @JsonProperty("user") String user) {
 		this.message = message;
 		this.user = user;
-        this.timestamp = Instant.now();
+        this.timestamp = new Date();
 	}
 
 	public String getMessage() {
@@ -25,7 +25,7 @@ public class ChatMessage {
 		return user;
 	}
 
-    public Instant getTimestamp() {
+    public Date getTimestamp() {
         return timestamp;
     }
 

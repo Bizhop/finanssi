@@ -9,7 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.Instant;
+import java.util.Date;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -32,14 +32,14 @@ public class ChatController {
             return repository.findAll();
         }
         else {
-            Instant lri = Instant.ofEpochMilli(lastRequest);
+            Date lrd = new Date(lastRequest);
             List<ChatMessage> messages = repository.findAll();
             if(messages == null || messages.isEmpty()) {
                 return new ArrayList<ChatMessage>();
             }
             else {
                 return messages.stream()
-                        .filter(o -> o.getTimestamp().isAfter(lri))
+                        .filter(o -> o.getTimestamp().after(lrd))
                         .collect(Collectors.toList());
             }
         }
