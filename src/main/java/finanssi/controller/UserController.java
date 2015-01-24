@@ -1,5 +1,7 @@
-package hello;
+package finanssi.controller;
 
+import finanssi.model.User;
+import finanssi.db.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -49,11 +51,11 @@ public class UserController {
 
 	@RequestMapping(method = RequestMethod.GET)
 	public List<User> list() {
-		return repository.findAll();
+        return repository.findAll();
 	}
 
 	@RequestMapping(value = "{userName}", method = RequestMethod.GET)
 	public User getUser(@PathVariable String userName) {
-		return repository.findByUserName(userName);
+        return repository.findByUserName(userName);
 	}
 }

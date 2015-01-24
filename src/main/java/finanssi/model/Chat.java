@@ -1,4 +1,4 @@
-package hello;
+package finanssi.model;
 
 import java.util.List;
 

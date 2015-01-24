@@ -1,4 +1,6 @@
-package hello;
+package finanssi.util;
+
+import finanssi.model.Dice;
 
 import java.util.Random;
 import java.util.List;

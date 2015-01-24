@@ -1,5 +1,6 @@
-package hello;
+package finanssi.db;
 
+import finanssi.model.User;
 import org.springframework.data.mongodb.repository.MongoRepository;
 
 /**

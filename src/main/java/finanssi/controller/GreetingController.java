@@ -1,7 +1,8 @@
-package hello;
+package finanssi.controller;
 
 import java.util.concurrent.atomic.AtomicLong;
 
+import finanssi.model.Greeting;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;

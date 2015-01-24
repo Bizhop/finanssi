@@ -1,4 +1,4 @@
-package hello;
+package finanssi.util;
 
 import java.io.IOException;
 

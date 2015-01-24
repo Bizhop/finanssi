@@ -3,8 +3,10 @@ $(function() {
 	//var button = $("#send");
 	var server = "http://finanssi.nuthou.se:8080";
 	var name = prompt("Enter your nickname", "default");
-	if(name != null) {
-		$("#user").val(name);
+	var messagesUntil = null;
+
+	if(name == null || name == '') {
+		name = default;
 	}
 	doPoll();
 	rollChatDown();
@@ -12,7 +14,7 @@ $(function() {
 	$("#chatInput").keyup(function(event) {
 		if(event.keyCode == 13) {
 			var chatmessage = new Object();
-			chatmessage.user = $("#user").val();
+			chatmessage.user = name;
 			chatmessage.message = $("#chatInput").val();
 			var jsonMessage = JSON.stringify(chatmessage);
 			$.ajax({
@@ -23,34 +25,42 @@ $(function() {
 				dataType: "json",
 				crossDomain: true,
 				success: function(data) {
-					printChat(data);
+//					printChat(data);
 					$("#chatInput").val("");
 					rollChatDown();
 				},
 				failure: function(errMsg) {
-		            		$("#alert").show();
-		        		}
+		        	$("#alert").show();
+		        }
 			});
 		}
 	});
 	
-	function printChat(data) {
-		var messages = data.messages;
-		var chatHtml = "";
-		for(var i=0; i < messages.length; i++) {
-			chatHtml += "<tr><td>" + messages[i].user + "</td><td>" + messages[i].message + "</td></tr>";
-		}
-		$("#chatTable").html(chatHtml);
-		$("#alert").hide();
-	};
+//	function printChat(data) {
+//		var messages = data.messages;
+//		var chatHtml = "";
+//		for(var i=0; i < messages.length; i++) {
+//			chatHtml += "<tr><td>" + messages[i].user + "</td><td>" + messages[i].message + "</td></tr>";
+//		}
+//		$("#chatTable").html(chatHtml);
+//		$("#alert").hide();
+//	};
 	
 	function doPoll() {
 		$.ajax({
 			type: "GET",
 			url: server + "/chat",
+			data: {"lastRequest",messagesUntil},
 			dataType: "json",
-			success: function(data) {
-				printChat(data);
+			success: function(messages) {
+//				var messages = data.messages;
+				messagesUntil = new Date();
+                var chatHtml = "";
+                for(var i=0; i < messages.length; i++) {
+                	chatHtml += "<tr><td>" + messages[i].user + "</td><td>" + messages[i].message + "</td></tr>";
+                }
+                $("#chatTable").html(chatHtml);
+                $("#alert").hide();
 			}
 		});
 		setTimeout(doPoll,1000);
