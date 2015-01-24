@@ -8,13 +8,13 @@ import java.util.Date;
 public class ChatMessage {
 	private String message;
 	private String user;
-    private Date timestamp;
+    private Long timestamp;
 
 	@JsonCreator
 	public ChatMessage(@JsonProperty("message") String message, @JsonProperty("user") String user) {
 		this.message = message;
 		this.user = user;
-        this.timestamp = new Date();
+        this.timestamp = new Date().getTime();
 	}
 
 	public String getMessage() {
@@ -25,7 +25,7 @@ public class ChatMessage {
 		return user;
 	}
 
-    public Date getTimestamp() {
+    public Long getTimestamp() {
         return timestamp;
     }
 

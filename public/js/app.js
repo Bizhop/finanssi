@@ -50,11 +50,12 @@ $(function() {
 			data: {"lastRequest": messagesUntil},
 			dataType: "json",
 			success: function(messages) {
-//				var messages = data.messages;
-				messagesUntil = +new Date();
-                var chatHtml = "";
-                for(var i=0; i < messages.length; i++) {
-                	chatHtml += "<tr><td>" + messages[i].user + "</td><td>" + messages[i].message + "</td></tr>";
+				var chatHtml = $("#chatTable").html();
+				if(messages.length > 0) {
+					messagesUntil = messages[messages.length - 1].timestamp;
+					for(var i=0; i < messages.length; i++) {
+						chatHtml += "<tr><td>" + messages[i].user + "</td><td>" + messages[i].message + "</td></tr>";
+                }
                 }
                 $("#chatTable").html(chatHtml);
                 $("#alert").hide();

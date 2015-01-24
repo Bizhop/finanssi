@@ -32,14 +32,13 @@ public class ChatController {
             return repository.findAll();
         }
         else {
-            Date lrd = new Date(lastRequest);
             List<ChatMessage> messages = repository.findAll();
             if(messages == null || messages.isEmpty()) {
                 return new ArrayList<ChatMessage>();
             }
             else {
                 return messages.stream()
-                        .filter(o -> o.getTimestamp().after(lrd))
+                        .filter(o -> o.getTimestamp() > lastRequest)
                         .collect(Collectors.toList());
             }
         }
