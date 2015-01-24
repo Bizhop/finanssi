@@ -4,10 +4,7 @@ $(function() {
 	var server = "http://finanssi.nuthou.se:8080";
 	var name = prompt("Enter your nickname", "default");
 	var messagesUntil = null;
-
-	if(name == null || name == '') {
-		name = default;
-	}
+	
 	doPoll();
 	rollChatDown();
 	
@@ -54,7 +51,7 @@ $(function() {
 			dataType: "json",
 			success: function(messages) {
 //				var messages = data.messages;
-				messagesUntil = new Date();
+				messagesUntil = +new Date();
                 var chatHtml = "";
                 for(var i=0; i < messages.length; i++) {
                 	chatHtml += "<tr><td>" + messages[i].user + "</td><td>" + messages[i].message + "</td></tr>";
