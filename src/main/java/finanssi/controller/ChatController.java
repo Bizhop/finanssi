@@ -42,7 +42,7 @@ public class ChatController {
 	
 	@RequestMapping(method = RequestMethod.POST)
 	public HttpStatus postMessage(@RequestBody ChatMessage message ) {
-		System.out.println(message.getUser() + ": " + message.getMessage());
+		System.out.println(message);
         repository.save(message);
 		if(message.getMessage().startsWith("!roll ") || message.getMessage().equals("!roll")) {
 			Dice dice = DiceRoller.roll(message.getMessage());
