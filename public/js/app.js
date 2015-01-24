@@ -4,7 +4,7 @@ $(function() {
 	var server = "http://finanssi.nuthou.se:8080";
 	var name = prompt("Enter your nickname", "default");
 	var messagesUntil = null;
-	
+
 	doPoll();
 	rollChatDown();
 	

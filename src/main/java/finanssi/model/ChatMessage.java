@@ -28,4 +28,9 @@ public class ChatMessage {
     public Instant getTimestamp() {
         return timestamp;
     }
+
+    @Override
+    public String toString() {
+        return String.format("[user: %s, message: %s, timestamp: %s]", user, message, timestamp.toString());
+    }
 }
