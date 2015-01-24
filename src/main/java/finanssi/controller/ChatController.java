@@ -33,10 +33,15 @@ public class ChatController {
         }
         else {
             Instant lri = Instant.ofEpochMilli(lastRequest);
-            return repository.findAll()
-                    .stream()
-                    .filter(o -> o.getTimestamp().isAfter(lri))
-                    .collect(Collectors.toList());
+            List<ChatMessage> messages = repository.findAll();
+            if(messages == null || messages.isEmpty()) {
+                return new ArrayList<ChatMessage>();
+            }
+            else {
+                return messages.stream()
+                        .filter(o -> o.getTimestamp().isAfter(lri))
+                        .collect(Collectors.toList());
+            }
         }
 	}
 	
