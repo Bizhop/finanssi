@@ -50,14 +50,16 @@ $(function() {
 			data: {"lastRequest": messagesUntil},
 			dataType: "json",
 			success: function(messages) {
-				var chatHtml = $("#chatTable").html();
+				//var chatHtml = $("#chatTable").html();
 				if(messages.length > 0) {
 					messagesUntil = messages[messages.length - 1].timestamp;
 					for(var i=0; i < messages.length; i++) {
-						chatHtml += "<tr><td>" + messages[i].user + "</td><td>" + messages[i].message + "</td></tr>";
+						var newRow = "<tr><td>" + messages[i].user + "</td><td>" + messages[i].message + "</td></tr>";
+						$("#chatTable > tbody:last").append(newRow);
+						//chatHtml += "<tr><td>" + messages[i].user + "</td><td>" + messages[i].message + "</td></tr>";
                 }
                 }
-                $("#chatTable").html(chatHtml);
+                //$("#chatTable").html(chatHtml);
                 $("#alert").hide();
 			}
 		});
