@@ -1,6 +1,5 @@
 $(function() {
 	$("#alert").hide();
-	//var button = $("#send");
 	var server = "http://finanssi.nuthou.se:8080";
 	var name = prompt("Enter your nickname", "default");
 	var messagesUntil = null;
@@ -22,7 +21,6 @@ $(function() {
 				dataType: "json",
 				crossDomain: true,
 				success: function(data) {
-//					printChat(data);
 					$("#chatInput").val("");
 					rollChatDown();
 				},
@@ -33,16 +31,6 @@ $(function() {
 		}
 	});
 	
-//	function printChat(data) {
-//		var messages = data.messages;
-//		var chatHtml = "";
-//		for(var i=0; i < messages.length; i++) {
-//			chatHtml += "<tr><td>" + messages[i].user + "</td><td>" + messages[i].message + "</td></tr>";
-//		}
-//		$("#chatTable").html(chatHtml);
-//		$("#alert").hide();
-//	};
-	
 	function doPoll() {
 		$.ajax({
 			type: "GET",
@@ -50,16 +38,13 @@ $(function() {
 			data: {"lastRequest": messagesUntil},
 			dataType: "json",
 			success: function(messages) {
-				//var chatHtml = $("#chatTable").html();
 				if(messages.length > 0) {
 					messagesUntil = messages[messages.length - 1].timestamp;
 					for(var i=0; i < messages.length; i++) {
 						var newRow = "<tr><td>" + messages[i].user + "</td><td>" + messages[i].message + "</td></tr>";
 						$("#chatTable > tbody:last").append(newRow);
-						//chatHtml += "<tr><td>" + messages[i].user + "</td><td>" + messages[i].message + "</td></tr>";
                 }
                 }
-                //$("#chatTable").html(chatHtml);
                 $("#alert").hide();
 			}
 		});
