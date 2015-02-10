@@ -1,15 +1,16 @@
 package finanssi.controller;
 
-import finanssi.model.User;
+import com.wordnik.swagger.annotations.ApiOperation;
+import com.wordnik.swagger.annotations.ApiResponse;
+import com.wordnik.swagger.annotations.ApiResponses;
 import finanssi.db.UserRepository;
+import finanssi.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.*;
+
+import javax.servlet.http.HttpServletResponse;
 import java.util.List;
+import java.util.Optional;
 
 /**
  * Created by ville on 17.1.2015.
@@ -21,41 +22,56 @@ public class UserController {
     private UserRepository repository;
 
     @RequestMapping(value = "create", method = RequestMethod.POST)
-    public HttpStatus create(@RequestBody User user) {
-        //String query = String.format("{'userName': '%s'}", user.getUserName());
-        //System.out.println("Query: " + query);
-        User findThis = repository.findByUserName(user.getUserName());
-        System.out.println(findThis);
-        if(findThis == null) {
+    @ApiOperation(httpMethod = "POST", value = "Create user")
+    @ApiResponses(value = {
+            @ApiResponse(code = HttpServletResponse.SC_BAD_REQUEST, message = "Invalid request.")})
+    public void create(@RequestBody User user, HttpServletResponse response) {
+        Optional<User> findThis = repository.findByUserName(user.getUserName());
+        if (!findThis.isPresent()) {
             repository.save(user);
-            return HttpStatus.OK;
+            response.setStatus(HttpServletResponse.SC_OK);
         }
         else {
-            return HttpStatus.BAD_REQUEST;
+            response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
         }
     }
 
     @RequestMapping(value = "login", method = RequestMethod.POST)
-    public HttpStatus login(@RequestBody User user) {
-        //String query = String.format("{'userName': '%s', 'password': '%s'}", user.getUserName(), user.getPassword());
-        //System.out.println("Query: " + query);
-        User findThis = repository.findByUserNameAndPassword(user.getUserName(), user.getPassword());
-        System.out.println(findThis);
-        if(findThis != null) {
-            return HttpStatus.OK;
-        }
-        else {
-            return HttpStatus.UNAUTHORIZED;
+    @ApiOperation(httpMethod = "POST", value = "Login user")
+    @ApiResponses(value = {
+            @ApiResponse(code = HttpServletResponse.SC_BAD_REQUEST, message = "Invalid request.")})
+    public void login(@RequestBody User user, HttpServletResponse response) {
+        Optional<User> findThis = repository.findByUserNameAndPassword(user.getUserName(), user.getPassword());
+        if (findThis.isPresent()) {
+            response.setStatus(HttpServletResponse.SC_OK);
+        } else {
+            response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
         }
     }
 
 	@RequestMapping(method = RequestMethod.GET)
-	public List<User> list() {
+    @ApiOperation(httpMethod = "GET", value = "Get all users")
+    public
+    @ResponseBody
+    List<User> list(HttpServletResponse response) {
+        response.setStatus(HttpServletResponse.SC_OK);
         return repository.findAll();
 	}
 
 	@RequestMapping(value = "{userName}", method = RequestMethod.GET)
-	public User getUser(@PathVariable String userName) {
-        return repository.findByUserName(userName);
-	}
+    @ApiOperation(httpMethod = "GET", value = "Get user")
+    @ApiResponses(value = {
+            @ApiResponse(code = HttpServletResponse.SC_BAD_REQUEST, message = "Invalid request.")})
+    public
+    @ResponseBody
+    User getUser(@PathVariable String userName, HttpServletResponse response) {
+        Optional<User> findThis = repository.findByUserName(userName);
+        if (findThis.isPresent()) {
+            response.setStatus(HttpServletResponse.SC_OK);
+            return findThis.get();
+        } else {
+            response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+            return null;
+        }
+    }
 }
