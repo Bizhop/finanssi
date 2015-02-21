@@ -26,8 +26,9 @@ public class UserController {
     @ApiResponses(value = {
             @ApiResponse(code = HttpServletResponse.SC_BAD_REQUEST, message = "Invalid request.")})
     public void create(@RequestBody User user, HttpServletResponse response) {
-        Optional<User> findThis = repository.findByUserName(user.getUserName());
-        if (!findThis.isPresent()) {
+        Optional<User> byEmail = repository.findByEmail(user.getEmail());
+		Optional<User> byUserName = repository.findByUserName(user.getUserName());
+        if (!byEmail.isPresent() && !byUserName.isPresent()) {
             repository.save(user);
             response.setStatus(HttpServletResponse.SC_OK);
         }
@@ -41,7 +42,7 @@ public class UserController {
     @ApiResponses(value = {
             @ApiResponse(code = HttpServletResponse.SC_BAD_REQUEST, message = "Invalid request.")})
     public void login(@RequestBody User user, HttpServletResponse response) {
-        Optional<User> findThis = repository.findByUserNameAndPassword(user.getUserName(), user.getPassword());
+        Optional<User> findThis = repository.findByEmailAndPassword(user.getEmail(), user.getPassword());
         if (findThis.isPresent()) {
             response.setStatus(HttpServletResponse.SC_OK);
         } else {

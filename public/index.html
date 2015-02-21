@@ -11,22 +11,34 @@
 	</head>
 	<body>
 		<div class="container">
-			<form class="form-inline">
-				<div class="form-group">
-					<label for="signInEmail" class="sr-only">Email address</label>
-					<input type="email" id="signInEmail" class="form-control" placeholder="Email address" required autofocus>
+			<div class="row" id="userStuff">
+				<div class="col-md-7 col-md-offset-5">
+					<form class="form-inline floatRight">
+						<div class="form-group">
+							<label for="signInEmail" class="sr-only">Email</label>
+							<input type="email" id="signInEmail" class="form-control" placeholder="Email" required autofocus>
+						</div>
+						<div class="form-group">
+							<label for="signInPassword" class="sr-only">Password</label>
+							<input type="password" id="signInPassword" class="form-control" placeholder="Password" required>
+						</div>
+						<button id="buttonSignIn" class="btn btn-primary" type="button">Sign in</button>
+						<button id="buttonNewUser" class="btn" type="button">Create user</button>
+					</form>
 				</div>
-				<div class="form-group">
-					<label for="signInPassword" class="sr-only">Password</label>
-					<input type="password" id="signInPassword" class="form-control" placeholder="Password" required>
+			</div>
+			<div class="row" id="loggedIn" style="display: none;">
+				<div class="col-md-6 col-md-offset-5">
+					<span id="loggedInEmail" class="floatRight"></span>
 				</div>
-				<button id="buttonSignIn" class="btn btn-primary" type="button">Sign in</button>
-				<button id="buttonNewUser" class="btn" type="button">Create user</button>
-			</form>
+				<div class="col-md-1">
+					<button id="buttonSignOut" class="btn btn-xs floatRight" type="button">Sign out</button>
+				</div>
+			</div>
 			
 			<div id="chatContainer">
 				<div class="row">
-					<input type="text" class="form-control" id="chatInput" />
+					<input type="text" class="form-control" id="chatInput" disabled />
 				</div>
 				<div class="row" id="chat">
 					<table id="chatTable" class="table table-striped">
@@ -41,7 +53,7 @@
 			</div>
 			
 			<div id="newUser" style="display: none;">
-				<span id="newUserClose" class="glyphicon glyphicon-remove-circle close" aria-hidden="true"></span>
+				<span id="newUserClose" class="glyphicon glyphicon-remove-circle floatRight" aria-hidden="true"></span>
 				<form>
 					<h2 class="form-signin-heading">Enter your user details</h2>
 					<label for="newUserNickname" class="sr-only">Nickname</label>

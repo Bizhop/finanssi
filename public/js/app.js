@@ -2,10 +2,11 @@ $(function() {
 	//$("#alert").hide();
 	var server = "http://finanssi.nuthou.se:8080";
 	var name = "default";
-	var messagesUntil = null;
+	var messagesUntil = 1;
 	var chatLoaded = false;
+	var loggedUser = null;
 
-	doPoll();
+	setTimeout(doPoll,1000);
 	
 	$("#chatInput").keyup(function(event) {
 		if(event.keyCode == 13) {
@@ -70,5 +71,39 @@ $(function() {
 		$(".modalOverlay").fadeOut(200, function() {
 			$(".modalOverlay").remove();
 		});
+	});
+	
+	$("#buttonSignIn").click(function() {
+		var user = new Object();
+		user.email = $("#signInEmail").val();
+		user.password = $("#signInPassword").val();
+		var jsonUser = JSON.stringify(user);
+		$.ajax({
+			type: "POST",
+			url: server + "/user/login",
+			data: jsonUser,
+			contentType: "application/json",
+			dataType: "json",
+			crossDomain: true,
+			statusCode: {
+				200: function() {
+					$("#userStuff").hide();
+					$("#loggedIn").show();
+					loggedUser = user.email;
+					$("#chatInput").prop('disabled', false);
+					$("#loggedInEmail").html("Signed in: " + loggedUser);
+				},
+				400: function(){
+					alert("Login failed");
+				}
+			}
+		});
+	});
+	
+	$("#buttonSignOut").click(function() {
+		$("#userStuff").show();
+		$("#loggedIn").hide();
+		loggedUser = null;
+		$("#chatInput").prop('disabled', true);
 	});
 });
