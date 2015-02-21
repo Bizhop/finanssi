@@ -22,7 +22,7 @@ public class User {
 	private User() {}
 
 	@JsonCreator
-	public User(@JsonProperty("userName") String userName, @JsonProperty("password") String password, @JsonProperty("password") String email) {
+	public User(@JsonProperty("userName") String userName, @JsonProperty("password") String password, @JsonProperty("email") String email) {
 		this.userName = userName;
 		this.password = password; //TODO: hash this shit
 		this.email = email;

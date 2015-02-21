@@ -1,11 +1,11 @@
 $(function() {
-	$("#alert").hide();
+	//$("#alert").hide();
 	var server = "http://finanssi.nuthou.se:8080";
-	var name = prompt("Enter your nickname", "default");
+	var name = "default";
 	var messagesUntil = null;
+	var chatLoaded = false;
 
 	doPoll();
-	rollChatDown();
 	
 	$("#chatInput").keyup(function(event) {
 		if(event.keyCode == 13) {
@@ -43,15 +43,32 @@ $(function() {
 					for(var i=0; i < messages.length; i++) {
 						var newRow = "<tr><td>" + messages[i].user + "</td><td>" + messages[i].message + "</td></tr>";
 						$("#chatTable > tbody:last").append(newRow);
-                }
+					}
                 }
                 $("#alert").hide();
+				if(!chatLoaded) {
+					rollChatDown();
+					chatLoaded = true;
+				}
 			}
 		});
 		setTimeout(doPoll,1000);
 	};
 
 	function rollChatDown() {
-		$("#chat").stop().animate({scrollTop: $("#chat")[0].scrollHeight},1000);
+		$("#chat").stop().animate({scrollTop: $("#chat")[0].scrollHeight},500);
 	};
+
+	$("#buttonNewUser").click(function() {
+		$("body").append('<div class="modalOverlay" style="display: none;">');
+		$(".modalOverlay").fadeIn(200);
+		$("#newUser").fadeIn(200);
+	});
+	
+	$("#newUserClose").click(function() {
+		$("#newUser").fadeOut(200);
+		$(".modalOverlay").fadeOut(200, function() {
+			$(".modalOverlay").remove();
+		});
+	});
 });
