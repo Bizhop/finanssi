@@ -1,16 +1,12 @@
 #chatContainer {
 	width: 500px;
 	height: 500px;
+	margin-top: 10px;
 }
 
 #chat {
 	overflow: auto;
 	height: 450px;
-}
-
-p {
-	line-height: 90%;
-	margin: 3px 0px 3px 5px;
 }
 
 #chatInput {
@@ -20,4 +16,10 @@ p {
 
 body {
 	padding: 50px;
+}
+
+.form-signin {
+	max-width: 330px;
+	padding: 10px;
+	margin: 10px 0px;
 }
