@@ -28,6 +28,7 @@ public class User {
 		this.userName = userName;
         if(password != null) {
             this.password = Hasher.hash(password);
+            System.out.println("User from json, password = " + this.password);
         }
         this.email = email;
 	}

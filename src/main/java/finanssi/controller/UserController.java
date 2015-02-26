@@ -45,6 +45,10 @@ public class UserController {
     public @ResponseBody User login(@RequestBody User user, HttpServletResponse response) {
         Optional<User> findThis = repository.findByEmailAndPassword(user.getEmail(), user.getPassword());
         if (findThis.isPresent()) {
+            if(findThis.get().getStatus() == User.Status.INACTIVE) {
+                response.setStatus(HttpServletResponse.SC_FORBIDDEN);
+                return null;
+            }
             response.setStatus(HttpServletResponse.SC_OK);
             return findThis.get();
         } else {
@@ -63,6 +67,7 @@ public class UserController {
             User foundUser = findThis.get();
             foundUser.setPassword(user.getPassword());
             foundUser.setResetToken("");
+            foundUser.setStatus(User.Status.ACTIVE);
             repository.save(foundUser);
             response.setStatus(HttpServletResponse.SC_OK);
         } else {
