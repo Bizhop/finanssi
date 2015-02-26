@@ -1,7 +1,7 @@
 $(function() {
 	//$("#alert").hide();
 	var server = "http://finanssi.nuthou.se:8080";
-	var name = "default";
+	var name = null;
 	var messagesUntil = 1;
 	var chatLoaded = false;
 	var loggedUser = null;
@@ -61,17 +61,23 @@ $(function() {
 	};
 
 	$("#buttonNewUser").click(function() {
+		$("#newUserEmail").val("");
+		$("#newUserNickname").val("");
 		$("body").append('<div class="modalOverlay" style="display: none;">');
 		$(".modalOverlay").fadeIn(200);
 		$("#newUser").fadeIn(200);
 	});
 	
 	$("#newUserClose").click(function() {
+		closeOverlay();
+	});
+	
+	function closeOverlay() {
 		$("#newUser").fadeOut(200);
 		$(".modalOverlay").fadeOut(200, function() {
 			$(".modalOverlay").remove();
 		});
-	});
+	};
 	
 	$("#buttonSignIn").click(function() {
 		var user = new Object();
@@ -86,10 +92,11 @@ $(function() {
 			dataType: "json",
 			crossDomain: true,
 			statusCode: {
-				200: function() {
+				200: function(data) {
 					$("#userStuff").hide();
 					$("#loggedIn").show();
-					loggedUser = user.email;
+					loggedUser = data.email;
+					name = data.userName;
 					$("#chatInput").prop('disabled', false);
 					$("#loggedInEmail").html("Signed in: " + loggedUser);
 				},
@@ -100,10 +107,35 @@ $(function() {
 		});
 	});
 	
+	$("#register").click(function() {
+		var user = new Object();
+		user.email = $("#newUserEmail").val();
+		user.userName = $("#newUserNickname").val();
+		var jsonUser = JSON.stringify(user);
+		$.ajax({
+			type: "POST",
+			url: server + "/user/create",
+			data: jsonUser,
+			contentType: "application/json",
+			dataType: "json",
+			crossDomain: true,
+			statusCode: {
+				200: function(data) {
+					alert("OK");
+					closeOverlay();
+				},
+				400: function(){
+					alert("Registration failed");
+				}
+			}
+		});
+	});
+	
 	$("#buttonSignOut").click(function() {
 		$("#userStuff").show();
 		$("#loggedIn").hide();
 		loggedUser = null;
+		name = null;
 		$("#chatInput").prop('disabled', true);
 	});
 });
