@@ -39,6 +39,7 @@ public class ChatController {
             else {
                 return messages.stream()
                         .filter(o -> o.getTimestamp() > lastRequest)
+                        .sorted((e1, e2) -> Long.compare(e1.getTimestamp(), e2.getTimestamp()))
                         .collect(Collectors.toList());
             }
         }
