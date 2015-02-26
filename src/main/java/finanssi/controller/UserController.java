@@ -41,12 +41,14 @@ public class UserController {
     @ApiOperation(httpMethod = "POST", value = "Login user")
     @ApiResponses(value = {
             @ApiResponse(code = HttpServletResponse.SC_BAD_REQUEST, message = "Invalid request.")})
-    public void login(@RequestBody User user, HttpServletResponse response) {
+    public @ResponseBody String login(@RequestBody User user, HttpServletResponse response) {
         Optional<User> findThis = repository.findByEmailAndPassword(user.getEmail(), user.getPassword());
         if (findThis.isPresent()) {
             response.setStatus(HttpServletResponse.SC_OK);
+            return findThis.get().getUserName();
         } else {
             response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+            return null;
         }
     }
 
