@@ -9,8 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletResponse;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 /**
  * Created by ville on 17.1.2015.
@@ -29,6 +28,8 @@ public class UserController {
         Optional<User> byEmail = repository.findByEmail(user.getEmail());
 		Optional<User> byUserName = repository.findByUserName(user.getUserName());
         if (!byEmail.isPresent() && !byUserName.isPresent()) {
+            user.setStatus(User.Status.INACTIVE);
+            user.setResetToken(UUID.randomUUID().toString());
             repository.save(user);
             response.setStatus(HttpServletResponse.SC_OK);
         }
@@ -49,6 +50,27 @@ public class UserController {
         } else {
             response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
             return null;
+        }
+    }
+
+    @RequestMapping(value = "setPassword", method = RequestMethod.POST)
+    @ApiOperation(httpMethod = "POST", value = "Set password")
+    @ApiResponses(value = {
+            @ApiResponse(code = HttpServletResponse.SC_BAD_REQUEST, message = "Invalid request.")})
+    public void setPassword(@RequestBody User user, HttpServletResponse response) {
+        Optional<User> findThis = repository.findByEmailAndPassword(user.getEmail(), user.getPassword());
+        if (findThis.isPresent()) {
+            User foundUser = findThis.get();
+            if(user.getResetToken() != null && user.getResetToken().equals(foundUser.getResetToken())) {
+                foundUser.setPassword(user.getPassword());
+                foundUser.setResetToken("");
+                repository.save(foundUser);
+                response.setStatus(HttpServletResponse.SC_OK);
+            } else {
+                response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+            }
+        } else {
+            response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
         }
     }
 

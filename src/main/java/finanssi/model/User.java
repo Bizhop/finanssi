@@ -2,13 +2,14 @@ package finanssi.model;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import finanssi.util.Hasher;
 
 /**
  * Created by ville on 17.1.2015.
  */
 public class User {
 
-	public enum Status {
+    public enum Status {
 		ACTIVE, INACTIVE
 	}
 
@@ -16,6 +17,7 @@ public class User {
 
 	private String userName;
 	private String password;
+    private String resetToken;
 	private String email;
 	private Status status;
 
@@ -24,9 +26,10 @@ public class User {
 	@JsonCreator
 	public User(@JsonProperty("userName") String userName, @JsonProperty("password") String password, @JsonProperty("email") String email) {
 		this.userName = userName;
-		this.password = password; //TODO: hash this shit
-		this.email = email;
-		this.status = Status.INACTIVE;
+        if(password != null) {
+            this.password = Hasher.hash(password);
+        }
+        this.email = email;
 	}
 
 	public String getUserName() {
@@ -48,6 +51,22 @@ public class User {
 	public void setEmail(String email) {
 		this.email = email;
 	}
+
+    public Status getStatus() {
+        return status;
+    }
+
+    public void setStatus(Status status) {
+        this.status = status;
+    }
+
+    public String getResetToken() {
+        return resetToken;
+    }
+
+    public void setResetToken(String resetToken) {
+        this.resetToken = resetToken;
+    }
 
 	@Override
 	public String toString() {
