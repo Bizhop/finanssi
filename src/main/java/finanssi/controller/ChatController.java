@@ -47,13 +47,17 @@ public class ChatController {
 	
 	@RequestMapping(method = RequestMethod.POST)
 	public HttpStatus postMessage(@RequestBody ChatMessage message ) {
-		System.out.println(message);
-        repository.save(message);
-		if(message.getMessage().startsWith("!roll ") || message.getMessage().equals("!roll")) {
-			Dice dice = DiceRoller.roll(message.getMessage());
-			ChatMessage system = new ChatMessage(dice.toString(), "system");
-			repository.save(system);
-		}
-		return HttpStatus.OK;
+        if(message.getUser() != null) {
+            System.out.println(message);
+            repository.save(message);
+            if (message.getMessage().startsWith("!roll ") || message.getMessage().equals("!roll")) {
+                Dice dice = DiceRoller.roll(message.getMessage());
+                ChatMessage system = new ChatMessage(dice.toString(), "system");
+                repository.save(system);
+            }
+            return HttpStatus.OK;
+        } else {
+            return HttpStatus.BAD_REQUEST;
+        }
 	}
 }
