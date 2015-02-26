@@ -62,16 +62,17 @@ public class UserController {
     @ApiResponses(value = {
             @ApiResponse(code = HttpServletResponse.SC_BAD_REQUEST, message = "Invalid request.")})
     public void setPassword(@RequestBody User user, HttpServletResponse response) {
-        Optional<User> findThis = repository.findByResetToken(user.getResetToken());
-        if (findThis.isPresent()) {
-            User foundUser = findThis.get();
-            foundUser.setPassword(user.getPassword());
-            foundUser.setResetToken("");
-            foundUser.setStatus(User.Status.ACTIVE);
-            repository.save(foundUser);
-            response.setStatus(HttpServletResponse.SC_OK);
-        } else {
-            response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+        response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+        if (user.getResetToken() != null && !user.getResetToken().isEmpty()) {
+            Optional<User> findThis = repository.findByResetToken(user.getResetToken());
+            if(findThis.isPresent()) {
+                User foundUser = findThis.get();
+                foundUser.setPassword(user.getPassword());
+                foundUser.setResetToken(null);
+                foundUser.setStatus(User.Status.ACTIVE);
+                repository.save(foundUser);
+                response.setStatus(HttpServletResponse.SC_OK);
+            }
         }
     }
 
