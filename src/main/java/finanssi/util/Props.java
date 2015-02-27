@@ -29,19 +29,19 @@ public class Props {
 	public String getSmtpServer() {
 		return this.smtpServer;
 	}
-	public String setSmtpServer(String smtpServer) {
+	public void setSmtpServer(String smtpServer) {
 		this.smtpServer = smtpServer;
 	}
 	public String getSmtpUser() {
                 return this.smtpUser;
         }
-        public String setSmtpUser(String smtpUser) {
+        public void setSmtpUser(String smtpUser) {
                 this.smtpUser = smtpUser;
         }
 	public String getSmtpPassword() {
                 return this.smtpPassword;
         }
-        public String setSmtpPassword(String smtpPassword) {
+        public void setSmtpPassword(String smtpPassword) {
                 this.smtpPassword = smtpPassword;
         }
 }
