@@ -5,6 +5,7 @@ import com.wordnik.swagger.annotations.ApiResponse;
 import com.wordnik.swagger.annotations.ApiResponses;
 import finanssi.db.UserRepository;
 import finanssi.model.User;
+import finanssi.util.Mailer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -71,6 +72,7 @@ public class UserController {
                 foundUser.setResetToken(null);
                 foundUser.setStatus(User.Status.ACTIVE);
                 repository.save(foundUser);
+                Mailer.sendResetLink(foundUser.getEmail(), foundUser.getResetToken());
                 response.setStatus(HttpServletResponse.SC_OK);
             }
         }

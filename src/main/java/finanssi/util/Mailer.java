@@ -11,7 +11,7 @@ public class Mailer {
     @Autowired
     private JavaMailSender sender;
 
-    public static void sendResetLink(String email, String resetToken, String password) {
+    public static void sendResetLink(String email, String resetToken) {
         SimpleMailMessage message = new SimpleMailMessage();
         message.setTo(email);
         message.setFrom("ville.piispa@gmail.com");
