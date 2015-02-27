@@ -3,10 +3,12 @@ package finanssi.util;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.stereotype.Component;
 
 /**
  * Created by ville on 27.2.2015.
  */
+@Component
 public class Mailer {
     private static JavaMailSender sender;
 
