@@ -9,7 +9,7 @@ import org.springframework.mail.javamail.JavaMailSender;
  */
 public class Mailer {
     @Autowired
-    private JavaMailSender sender;
+    private static JavaMailSender sender;
 
     public static void sendResetLink(String email, String resetToken) {
         SimpleMailMessage message = new SimpleMailMessage();
@@ -17,5 +17,6 @@ public class Mailer {
         message.setFrom("ville.piispa@gmail.com");
         message.setSubject("Finanssi - please setup your password");
         message.setText(String.format("http://finanssi.nuthou.se/reset.html?token=%s", resetToken));
+        sender.send(message);
     }
 }
