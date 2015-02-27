@@ -43,15 +43,79 @@ public class MailConfiguration {
     public JavaMailSender getMailService() {
         JavaMailSenderImpl m = new JavaMailSenderImpl();
         Properties p = new Properties();
-        p.put("mail.smtp.auth", auth);
-        p.put("mail.smtp.starttls.enable", starttls);
-        p.put("mail.debug", debug);
+        p.put("mail.smtp.auth", isAuth());
+        p.put("mail.smtp.starttls.enable", isStarttls());
+        p.put("mail.debug", isDebug());
         m.setJavaMailProperties(p);
-        m.setHost(host);
-        m.setPort(port);
-        m.setProtocol(protocol);
-        m.setUsername(user);
-        m.setPassword(password);
+        m.setHost(getHost());
+        m.setPort(getPort());
+        m.setProtocol(getProtocol());
+        m.setUsername(getUser());
+        m.setPassword(getPassword());
         return m;
+    }
+
+    public String getHost() {
+        return host;
+    }
+
+    public void setHost(String host) {
+        this.host = host;
+    }
+
+    public String getUser() {
+        return user;
+    }
+
+    public void setUser(String user) {
+        this.user = user;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public int getPort() {
+        return port;
+    }
+
+    public void setPort(int port) {
+        this.port = port;
+    }
+
+    public boolean isAuth() {
+        return auth;
+    }
+
+    public void setAuth(boolean auth) {
+        this.auth = auth;
+    }
+
+    public boolean isStarttls() {
+        return starttls;
+    }
+
+    public void setStarttls(boolean starttls) {
+        this.starttls = starttls;
+    }
+
+    public String getProtocol() {
+        return protocol;
+    }
+
+    public void setProtocol(String protocol) {
+        this.protocol = protocol;
+    }
+
+    public boolean isDebug() {
+        return debug;
+    }
+
+    public void setDebug(boolean debug) {
+        this.debug = debug;
     }
 }
