@@ -32,6 +32,7 @@ public class UserController {
             user.setStatus(User.Status.INACTIVE);
             user.setResetToken(UUID.randomUUID().toString());
             repository.save(user);
+            Mailer.sendResetLink(user.getEmail(), user.getResetToken());
             response.setStatus(HttpServletResponse.SC_OK);
         }
         else {
@@ -72,7 +73,6 @@ public class UserController {
                 foundUser.setResetToken(null);
                 foundUser.setStatus(User.Status.ACTIVE);
                 repository.save(foundUser);
-                Mailer.sendResetLink(foundUser.getEmail(), foundUser.getResetToken());
                 response.setStatus(HttpServletResponse.SC_OK);
             }
         }
