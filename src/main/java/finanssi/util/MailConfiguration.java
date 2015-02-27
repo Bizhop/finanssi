@@ -13,7 +13,6 @@ import java.util.Properties;
  */
 @Configuration
 public class MailConfiguration {
-    private static MailConfiguration instance;
 
 	@Value("${smtp.host}")
 	private String host;
@@ -32,90 +31,19 @@ public class MailConfiguration {
     @Value("${smtp.debug}")
     private boolean debug;
 
-    public static MailConfiguration getInstance() {
-        if(instance == null) {
-            instance = new MailConfiguration();
-        }
-        return instance;
-    }
-
 	@Bean
-    public JavaMailSender getMailService() {
+    public JavaMailSender javaMailSender() {
         JavaMailSenderImpl m = new JavaMailSenderImpl();
         Properties p = new Properties();
-        p.put("mail.smtp.auth", isAuth());
-        p.put("mail.smtp.starttls.enable", isStarttls());
-        p.put("mail.debug", isDebug());
+        p.put("mail.smtp.auth", auth);
+        p.put("mail.smtp.starttls.enable", starttls);
+        p.put("mail.debug", debug);
         m.setJavaMailProperties(p);
-        m.setHost(getHost());
-        m.setPort(getPort());
-        m.setProtocol(getProtocol());
-        m.setUsername(getUser());
-        m.setPassword(getPassword());
+        m.setHost(host);
+        m.setPort(port);
+        m.setProtocol(protocol);
+        m.setUsername(user);
+        m.setPassword(password);
         return m;
-    }
-
-    public String getHost() {
-        return host;
-    }
-
-    public void setHost(String host) {
-        this.host = host;
-    }
-
-    public String getUser() {
-        return user;
-    }
-
-    public void setUser(String user) {
-        this.user = user;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public int getPort() {
-        return port;
-    }
-
-    public void setPort(int port) {
-        this.port = port;
-    }
-
-    public boolean isAuth() {
-        return auth;
-    }
-
-    public void setAuth(boolean auth) {
-        this.auth = auth;
-    }
-
-    public boolean isStarttls() {
-        return starttls;
-    }
-
-    public void setStarttls(boolean starttls) {
-        this.starttls = starttls;
-    }
-
-    public String getProtocol() {
-        return protocol;
-    }
-
-    public void setProtocol(String protocol) {
-        this.protocol = protocol;
-    }
-
-    public boolean isDebug() {
-        return debug;
-    }
-
-    public void setDebug(boolean debug) {
-        this.debug = debug;
     }
 }
