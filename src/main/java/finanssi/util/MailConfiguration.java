@@ -13,7 +13,7 @@ import java.util.Properties;
  */
 @Configuration
 public class MailConfiguration {
-	private static MailConfiguration instance = null;
+    private static MailConfiguration instance;
 
 	@Value("${smtp.host}")
 	private String host;
@@ -31,6 +31,13 @@ public class MailConfiguration {
     private String protocol;
     @Value("${smtp.debug}")
     private boolean debug;
+
+    public static MailConfiguration getInstance() {
+        if(instance == null) {
+            instance = new MailConfiguration();
+        }
+        return instance;
+    }
 
 	@Bean
     public JavaMailSender getMailService() {

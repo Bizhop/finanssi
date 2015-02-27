@@ -8,8 +8,7 @@ import org.springframework.mail.javamail.JavaMailSender;
  * Created by ville on 27.2.2015.
  */
 public class Mailer {
-    @Autowired
-    private static JavaMailSender sender;
+    private static JavaMailSender sender = MailConfiguration.getInstance().getMailService();
 
     public static void sendResetLink(String email, String resetToken) {
         SimpleMailMessage message = new SimpleMailMessage();
