@@ -31,8 +31,8 @@ public class UserController {
         if (!byEmail.isPresent() && !byUserName.isPresent()) {
             user.setStatus(User.Status.INACTIVE);
             user.setResetToken(UUID.randomUUID().toString());
-            repository.save(user);
             Mailer.sendResetLink(user.getEmail(), user.getResetToken());
+            repository.save(user);
             response.setStatus(HttpServletResponse.SC_OK);
         }
         else {
