@@ -14,12 +14,12 @@ import java.util.Properties;
 @Configuration
 public class MailConfiguration {
 
-	@Value("${smtp.host}")
-	private String host;
-	@Value("${smtp.user}")
-	private String user;
-	@Value("${smtp.password}")
-	private String password;
+    @Value("${smtp.host}")
+    private String host;
+    @Value("${smtp.user}")
+    private String user;
+    @Value("${smtp.password}")
+    private String password;
     @Value("${smtp.port}")
     private int port;
     @Value("${smtp.auth}")
@@ -30,6 +30,10 @@ public class MailConfiguration {
     private String protocol;
     @Value("${smtp.debug}")
     private boolean debug;
+    @Value("${smtps.ssl.checkserveridentity}")
+    private boolean checkServerIdentity;
+    @Value("${smtps.ssl.trust}")
+    private String sslTrust;
 
 	@Bean
     public JavaMailSender javaMailSender() {
@@ -37,6 +41,8 @@ public class MailConfiguration {
         Properties p = new Properties();
         p.put("mail.smtp.auth", auth);
         p.put("mail.smtp.starttls.enable", starttls);
+        p.put("mail.smtps.ssl.checkserveridentity", checkServerIdentity);
+        p.put("mail.smtps.ssl.trust", sslTrust);
         p.put("mail.debug", debug);
         m.setJavaMailProperties(p);
         m.setHost(host);
