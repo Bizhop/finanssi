@@ -66,6 +66,9 @@ $(function() {
 		$("body").append('<div class="modalOverlay" style="display: none;">');
 		$(".modalOverlay").fadeIn(200);
 		$("#newUser").fadeIn(200);
+		$(".modalOverlay").click(function() {
+			closeOverlay();
+		});
 	});
 	
 	$("#newUserClose").click(function() {

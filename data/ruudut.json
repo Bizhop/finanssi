@@ -1,0 +1,460 @@
+[{
+	"type": "RUUTU",
+	"index": 1,
+	"text": "Pankin ulosk�ynti",
+	"action": "BANK OUT",
+	"coordinates": {
+		"x": 173,
+		"y": 800
+	}
+},
+{
+	"type": "RUUTU",
+	"index": 2,
+	"text": "Siirry Elektroniikkayhti��n",
+	"action": "MOVE 21",
+	"coordinates": {
+		"x": 56,
+		"y": 733
+	}
+},
+{
+	"type": "RUUTU",
+	"index": 3,
+	"text": "Ompelimo",
+	"action": "PROP_1-1",
+	"coordinates": {
+		"x": 56,
+		"y": 659
+	}
+},
+{
+	"type": "RUUTU",
+	"index": 4,
+	"text": "Maalaamo",
+	"action": "PROP_1-2",
+	"coordinates": {
+		"x": 56,
+		"y": 585
+	}
+},
+{
+	"type": "RUUTU",
+	"index": 5,
+	"text": "Finanssilehti",
+	"action": "MAG",
+	"coordinates": {
+		"x": 56,
+		"y": 511
+	}
+},
+{
+	"type": "RUUTU",
+	"index": 6,
+	"text": "Puusepänliike",
+	"action": "PROP_1-3",
+	"coordinates": {
+		"x": 56,
+		"y": 437
+	}
+},
+{
+	"type": "RUUTU",
+	"index": 7,
+	"text": "Pörssivihje",
+	"action": "HINT",
+	"coordinates": {
+		"x": 56,
+		"y": 362
+	}
+},
+{
+	"type": "RUUTU",
+	"index": 8,
+	"text": "Parkkitalo",
+	"action": "PROP_PARKING",
+	"coordinates": {
+		"x": 56,
+		"y": 288
+	}
+},
+{
+	"type": "RUUTU",
+	"index": 9,
+	"text": "Hotelli",
+	"action": "PROP_2-1",
+	"coordinates": {
+		"x": 56,
+		"y": 214
+	}
+},
+{
+	"type": "RUUTU",
+	"index": 10,
+	"text": "Autokorjaamo",
+	"action": "PROP_2-2",
+	"coordinates": {
+		"x": 56,
+		"y": 140
+	}
+},
+{
+	"type": "RUUTU",
+	"index": 11,
+	"text": "Pankin sivukonttori",
+	"action": "BANK",
+	"coordinates": {
+		"x": 56,
+		"y": 140
+	}
+},
+{
+	"type": "RUUTU",
+	"index": 12,
+	"text": "Huonekaluliike",
+	"action": "PROP_3-1",
+	"coordinates": {
+		"x": 142,
+		"y": 56
+	}
+},
+{
+	"type": "RUUTU",
+	"index": 13,
+	"text": "Elintarvikeliike",
+	"action": "PROP_3-2",
+	"coordinates": {
+		"x": 216,
+		"y": 56
+	}
+},
+{
+	"type": "RUUTU",
+	"index": 14,
+	"text": "Pörssivihje",
+	"action": "HINT",
+	"coordinates": {
+		"x": 291,
+		"y": 56
+	}
+},
+{
+	"type": "RUUTU",
+	"index": 15,
+	"text": "Kirjakauppa",
+	"action": "PROP_3-3",
+	"coordinates": {
+		"x": 365,
+		"y": 56
+	}
+},
+{
+	"type": "RUUTU",
+	"index": 16,
+	"text": "Pankki jakaa osinkoa kaikille osakkeillesi",
+	"action": "DIVIDEND_ALL",
+	"coordinates": {
+		"x": 440,
+		"y": 56
+	}
+},
+{
+	"type": "RUUTU",
+	"index": 17,
+	"text": "Rakennusprojekti Oy",
+	"action": "BUILD",
+	"coordinates": {
+		"x": 514,
+		"y": 56
+	}
+},
+{
+	"type": "RUUTU",
+	"index": 18,
+	"text": "Sijoitusyhtiö",
+	"action": "PROP_4-1",
+	"coordinates": {
+		"x": 589,
+		"y": 56
+	}
+},
+{
+	"type": "RUUTU",
+	"index": 19,
+	"text": "Luottolaitos",
+	"action": "PROP_4-2",
+	"coordinates": {
+		"x": 663,
+		"y": 56
+	}
+},
+{
+	"type": "RUUTU",
+	"index": 20,
+	"text": "Pörssivihje",
+	"action": "HINT",
+	"coordinates": {
+		"x": 738,
+		"y": 56
+	}
+},
+{
+	"type": "RUUTU",
+	"index": 21,
+	"text": "Elektroniikkayhtiö",
+	"action": "PROP_5-1",
+	"coordinates": {
+		"x": 812,
+		"y": 56
+	}
+},
+{
+	"type": "RUUTU",
+	"index": 22,
+	"text": "Videoyhtiö",
+	"action": "PROP_5-2",
+	"coordinates": {
+		"x": 887,
+		"y": 56
+	}
+},
+{
+	"type": "RUUTU",
+	"index": 23,
+	"text": "ATK-yhtiö",
+	"action": "PROP_5-3",
+	"coordinates": {
+		"x": 961,
+		"y": 56
+	}
+},
+{
+	"type": "RUUTU",
+	"index": 24,
+	"text": "Vankila",
+	"action": "JAIL",
+	"coordinates": {
+		"x": 1046,
+		"y": 56
+	}
+},
+{
+	"type": "RUUTU",
+	"index": 25,
+	"text": "Pörssivihje",
+	"action": "HINT",
+	"coordinates": {
+		"x": 1046,
+		"y": 140
+	}
+},
+{
+	"type": "RUUTU",
+	"index": 26,
+	"text": "Muovitehdas",
+	"action": "PROP_6-1",
+	"coordinates": {
+		"x": 1046,
+		"y": 214
+	}
+},
+{
+	"type": "RUUTU",
+	"index": 27,
+	"text": "Bensiiniyhtiö",
+	"action": "PROP_6-2",
+	"coordinates": {
+		"x": 1046,
+		"y": 288
+	}
+},
+{
+	"type": "RUUTU",
+	"index": 28,
+	"text": "Pankki jakaa osinkoa kaikille osakkeillesi",
+	"action": "DIVIDEND_ALL",
+	"coordinates": {
+		"x": 1046,
+		"y": 362
+	}
+},
+{
+	"type": "RUUTU",
+	"index": 29,
+	"text": "Öljynjalostamo",
+	"action": "PROP_6-3",
+	"coordinates": {
+		"x": 1046,
+		"y": 437
+	}
+},
+{
+	"type": "RUUTU",
+	"index": 30,
+	"text": "Sahalaitos",
+	"action": "PROP_7-1",
+	"coordinates": {
+		"x": 1046,
+		"y": 511
+	}
+},
+{
+	"type": "RUUTU",
+	"index": 31,
+	"text": "Finanssilehti",
+	"action": "MAG",
+	"coordinates": {
+		"x": 1046,
+		"y": 585
+	}
+},
+{
+	"type": "RUUTU",
+	"index": 32,
+	"text": "Paperitehdas",
+	"action": "PROP_7-2",
+	"coordinates": {
+		"x": 1046,
+		"y": 659
+	}
+},
+{
+	"type": "RUUTU",
+	"index": 33,
+	"text": "Rautatehdas",
+	"action": "PROP_7-3",
+	"coordinates": {
+		"x": 1046,
+		"y": 733
+	}
+},
+{
+	"type": "RUUTU",
+	"index": 34,
+	"text": "Pankin sisäänkäynti",
+	"action": "BANK IN",
+	"coordinates": {
+		"x": 929,
+		"y": 799
+	}
+},
+{
+	"type": "RUUTU",
+	"index": 35,
+	"text": "Kurssiromahdus. Maksa 10% osakepääomastasi pankille (ei koske yritysryhmiä)",
+	"action": "BANK CRASH",
+	"coordinates": {
+		"x": 807,
+		"y": 735
+	}
+},
+{
+	"type": "RUUTU",
+	"index": 36,
+	"text": "Joudut suoraan vankilaan jos heität nopalla 1:n tai 2:n",
+	"action": "BANK MAYBE_JAIL",
+	"coordinates": {
+		"x": 790,
+		"y": 669
+	}
+},
+{
+	"type": "RUUTU",
+	"index": 37,
+	"text": "Siirry ruutuun obligaatioiden osto, osinkojen jako",
+	"action": "MOVE_46",
+	"coordinates": {
+		"x": 756,
+		"y": 610
+	}
+},
+{
+	"type": "RUUTU",
+	"index": 38,
+	"text": "Pankki myy yhden obligaation eniten tarjoavalle",
+	"action": "BANK OBLIGATION_AUCTION",
+	"coordinates": {
+		"x": 708,
+		"y": 561
+	}
+},
+{
+	"type": "RUUTU",
+	"index": 39,
+	"text": "Pankki jakaa osinkoa 40% osakkeillesi",
+	"action": "BANK DIVIDEND 40",
+	"coordinates": {
+		"x": 649,
+		"y": 527
+	}
+},
+{
+	"type": "RUUTU",
+	"index": 40,
+	"text": "Rakennusprojekti Oy",
+	"action": "BANK BUILD",
+	"coordinates": {
+		"x": 585,
+		"y": 509
+	}
+},
+{
+	"type": "RUUTU",
+	"index": 41,
+	"text": "Jaa vastapelaajille 20% osinkoa osakkeista ryhmissä, joissa omistat tontteja",
+	"action": "BANK DIVIDEND_OTHER_20",
+	"coordinates": {
+		"x": 521,
+		"y": 509
+	}
+},
+{
+	"type": "RUUTU",
+	"index": 42,
+	"text": "Pankki jakaa osinkoa 30% osakkeillesi",
+	"action": "BANK DIVIDEND_30",
+	"coordinates": {
+		"x": 457,
+		"y": 527
+	}
+},
+{
+	"type": "RUUTU",
+	"index": 43,
+	"text": "Maksa takaisin joku lainoistasi",
+	"action": "BANK PAY_LOAN",
+	"coordinates": {
+		"x": 398,
+		"y": 561
+	}
+},
+{
+	"type": "RUUTU",
+	"index": 44,
+	"text": "Mene takaisin ruutuun Sahalaitos",
+	"action": "MOVE_30",
+	"coordinates": {
+		"x": 350,
+		"y": 610
+	}
+},
+{
+	"type": "RUUTU",
+	"index": 45,
+	"text": "Pieni obligaatioarvonta",
+	"action": "BANK OBLIGATION_SMALL",
+	"coordinates": {
+		"x": 317,
+		"y": 669
+	}
+},
+{
+	"type": "RUUTU",
+	"index": 46,
+	"text": "Obligaatioiden osto, osinkojen jako",
+	"action": "BANK OBLIGATION_BUY DIVIDEND_ALL",
+	"coordinates": {
+		"x": 299,
+		"y": 735
+	}
+}]
