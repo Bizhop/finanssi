@@ -98,6 +98,7 @@ $(function() {
 				200: function(data) {
 					$("#userStuff").hide();
 					$("#loggedIn").show();
+					$("#game").show();
 					loggedUser = data.email;
 					name = data.userName;
 					$("#chatInput").prop('disabled', false);
@@ -137,6 +138,7 @@ $(function() {
 	$("#buttonSignOut").click(function() {
 		$("#userStuff").show();
 		$("#loggedIn").hide();
+		$("#game").hide();
 		loggedUser = null;
 		name = null;
 		$("#chatInput").prop('disabled', true);
