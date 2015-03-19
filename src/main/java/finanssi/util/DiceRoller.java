@@ -34,10 +34,20 @@ public class DiceRoller {
 			type = 6;
 		}
 		
+		return new Dice(internalRoll(rolls,type), message);
+	}
+	
+	private static List<Integer> internalRoll(int rolls, int type) {
 		List<Integer> dice = new LinkedList<Integer>();
 		for(int i = 0; i < rolls; i++) {
 			dice.add(generator.nextInt(type) + 1);
 		}
-		return new Dice(dice, message);
+		return dice;
+	}
+	
+	public static Integer roll(int rolls, int type) {
+		return internalRoll(rolls, type).stream()
+				.mapToInt(Integer::intValue)
+				.sum();
 	}
 }
