@@ -1,7 +1,7 @@
 [{
 	"type": "RUUTU",
 	"index": 1,
-	"text": "Pankin uloskäynti",
+	"text": "Pankin uloskÃ¤ynti",
 	"action": "BANK OUT",
 	"coordinates": {
 		"x": 173,
@@ -11,7 +11,7 @@
 {
 	"type": "RUUTU",
 	"index": 2,
-	"text": "Siirry Elektroniikkayhtiöön",
+	"text": "Siirry ElektroniikkayhtiÃ¶Ã¶n",
 	"action": "MOVE 21",
 	"coordinates": {
 		"x": 56,

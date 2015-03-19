@@ -1,18 +1,22 @@
 package finanssi.controller;
 
-import finanssi.db.ChatMessageRepository;
-import finanssi.model.Chat;
-import finanssi.model.ChatMessage;
-import finanssi.model.Dice;
-import finanssi.util.DiceRoller;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.*;
-
-import java.util.Date;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
+
+import finanssi.db.ChatMessageRepository;
+import finanssi.model.ChatMessage;
+import finanssi.model.Dice;
+import finanssi.util.DiceRoller;
 
 @RestController
 @RequestMapping(value = "chat")
@@ -20,12 +24,6 @@ public class ChatController {
     @Autowired
     private ChatMessageRepository repository;
 
-//	private static List<ChatMessage> messages;
-//	static
-//	{
-//		messages = new ArrayList<ChatMessage>();
-//	}
-	
 	@RequestMapping(method = RequestMethod.GET)
 	public @ResponseBody List<ChatMessage> getChat(@RequestParam(value = "lastRequest", required = true) Long lastRequest) {
         if(lastRequest == null) {

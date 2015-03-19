@@ -1,0 +1,5 @@
+Finanssilehdet mongoon
+mongoimport --db test --collection mag --type json --file finanssilehdet.json --jsonArray
+
+Ruudut mongoon
+mongoimport --db test --collection grid --type json --file ruudut.json --jsonArray
