@@ -34,11 +34,24 @@
             <version>0.9.5</version>
         </dependency>
         <dependency>
+            <groupId>org.ajar</groupId>
+            <artifactId>swagger-spring-mvc-ui</artifactId>
+            <version>0.4</version>
+        </dependency>
+        <dependency>
             <groupId>javax.mail</groupId>
             <artifactId>mail</artifactId>
             <version>1.4.5</version>
         </dependency>
 	</dependencies>
+	
+	<repositories>
+		<repository>
+		    <id>oss-jfrog-artifactory</id>
+		    <name>oss-jfrog-artifactory-releases</name>
+		    <url>http://oss.jfrog.org/artifactory/oss-release-local</url>
+		</repository>
+	</repositories>
 	
 	<properties>
 		<start-class>finanssi.Application</start-class>
