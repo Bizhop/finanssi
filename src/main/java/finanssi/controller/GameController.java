@@ -2,6 +2,7 @@ package finanssi.controller;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import javax.servlet.http.HttpServletResponse;
 
@@ -95,9 +96,11 @@ public class GameController {
 	
 	@RequestMapping(value = "getGames", method = RequestMethod.GET)
 	@ApiOperation(httpMethod = "GET", value = "Get games")
-	public @ResponseBody List<GameState> getGames(HttpServletResponse response) {
+	public @ResponseBody List<String> getGames(HttpServletResponse response) {
 		response.setStatus(HttpServletResponse.SC_OK);
-		return games.findAll();
+		return games.findAll().stream()
+				.map(o -> o.getGameId())
+				.collect(Collectors.toList());
 	}
 	
 	@RequestMapping(value = "get", method = RequestMethod.GET)
