@@ -61,7 +61,7 @@ public class GameController {
 			return null;
 		}
 		
-		GameState state = new GameState(gameId, player, grids.findAll());
+		GameState state = new GameState(gameId, grids.findAll());
 		games.save(state);
 		return state;
 	}
@@ -111,6 +111,29 @@ public class GameController {
 		if(lookForGame.isPresent()) {
 			response.setStatus(HttpServletResponse.SC_OK);
 			return lookForGame.get();
+		}
+		else {
+			response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+			return null;
+		}
+	}
+	
+	@RequestMapping(value = "addPlayer", method = RequestMethod.POST)
+	@ApiOperation(httpMethod = "POST", value = "Add player to game")
+	public @ResponseBody GameState addPlayer(	@RequestParam(value = "gameId", required = true) String gameId, 
+												@RequestParam(value = "player", required = true) String player, 
+												HttpServletResponse response) {
+		Optional<GameState> lookForGame = games.findByGameId(gameId);
+		if(lookForGame.isPresent()) {
+			response.setStatus(HttpServletResponse.SC_OK);
+			GameState state = lookForGame.get();
+			
+			if(!state.getPlayers().containsKey(player)) {
+				state.getPlayers().put(player, new Player(player));
+				games.save(state);
+			}
+			
+			return state;
 		}
 		else {
 			response.setStatus(HttpServletResponse.SC_BAD_REQUEST);

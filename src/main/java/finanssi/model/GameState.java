@@ -14,11 +14,11 @@ public class GameState {
 	
 	public GameState() {}
 	
-	//init new game with first player
-	public GameState(String gameId, String name, List<Square> board) {
+	//init new game
+	public GameState(String gameId, List<Square> board) {
 		this.gameId = gameId;
 		this.players = new HashMap<String, Player>();
-		players.put(name, new Player(name));
+		//players.put(name, new Player(name));
 		this.board = board;
 	}
 	
