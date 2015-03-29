@@ -2,19 +2,19 @@ package finanssi.model;
 
 public class Player {
 	String name;
-	Integer position;
+	Square position;
 	
-	public Player(String name) {
+	public Player(String name, Square position) {
 		this.name = name;
-		this.position = 1;
+		this.position = position;
 	}
 	public String getName() {
 		return name;
 	}
-	public Integer getPosition() {
+	public Square getPosition() {
 		return position;
 	}
-	public void setPosition(Integer position) {
+	public void setPosition(Square position) {
 		this.position = position;
 	}
 }

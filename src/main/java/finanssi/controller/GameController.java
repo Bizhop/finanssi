@@ -25,6 +25,7 @@ import finanssi.model.Mag;
 import finanssi.model.Player;
 import finanssi.model.Square;
 import finanssi.util.DiceRoller;
+import finanssi.util.Utils;
 
 @RestController
 @RequestMapping(value = "game")
@@ -80,10 +81,11 @@ public class GameController {
 			}
 			else {
 				Integer rolled = DiceRoller.roll(1, 6);
-				Integer targetSquare = findPlayer.getPosition() + rolled;
-				if(targetSquare > LAST_SQUARE) {
-					targetSquare = 1;
+				Integer targetIndex = findPlayer.getPosition().getIndex() + rolled;
+				if(targetIndex > LAST_SQUARE) {
+					targetIndex = 1;
 				}
+				Square targetSquare = Utils.findByIndex(grids.findAll(), targetIndex);
 				findPlayer.setPosition(targetSquare);
 				games.save(state);
 			}
@@ -122,7 +124,7 @@ public class GameController {
 	@ApiOperation(httpMethod = "POST", value = "Add player to game")
 	public @ResponseBody GameState addPlayer(	@RequestBody GameForm form, 
 												HttpServletResponse response) {
-		System.out.println(form);
+		//System.out.println(form);
 		Optional<GameState> lookForGame = games.findByGameId(form.getGameId());
 		if(lookForGame.isPresent()) {
 			response.setStatus(HttpServletResponse.SC_OK);
@@ -130,7 +132,8 @@ public class GameController {
 			
 			String player = form.getPlayer();
 			if(!state.getPlayers().containsKey(player)) {
-				state.getPlayers().put(player, new Player(player));
+				Square first = Utils.findByIndex(grids.findAll(), 1);
+				state.getPlayers().put(player, new Player(player, first));
 				games.save(state);
 			}
 			
