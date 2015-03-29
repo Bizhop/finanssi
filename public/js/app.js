@@ -1,6 +1,6 @@
 $(function() {
 	//$("#alert").hide();
-	var server = "http://finanssi.nuthou.se:8080";
+	var server = "http://finanssi.port0.org:8080";
 	var name = null;
 	var messagesUntil = 1;
 	var chatLoaded = false;
