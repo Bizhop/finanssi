@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -120,8 +121,8 @@ public class GameController {
 	
 	@RequestMapping(value = "addPlayer", method = RequestMethod.POST)
 	@ApiOperation(httpMethod = "POST", value = "Add player to game")
-	public @ResponseBody GameState addPlayer(	@RequestParam(value = "gameId", required = true) String gameId, 
-												@RequestParam(value = "player", required = true) String player, 
+	public @ResponseBody GameState addPlayer(	@RequestBody String gameId, 
+												@RequestBody String player, 
 												HttpServletResponse response) {
 		Optional<GameState> lookForGame = games.findByGameId(gameId);
 		if(lookForGame.isPresent()) {
