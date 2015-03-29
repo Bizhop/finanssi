@@ -1,8 +1,17 @@
 package finanssi.model;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class GameForm {
 	String player;
 	String gameId;
+	
+	@JsonCreator
+	public GameForm(@JsonProperty("player") String player, @JsonProperty("gameId") String gameId) {
+		this.player = player;
+        this.gameId = gameId;
+	}
 	
 	public String getPlayer() {
 		return player;
@@ -17,6 +26,7 @@ public class GameForm {
 		this.gameId = gameId;
 	}
 	
+	@Override
 	public String toString() {
 		return this.gameId + ", " + this.player;
 	}
