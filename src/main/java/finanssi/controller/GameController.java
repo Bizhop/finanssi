@@ -19,6 +19,7 @@ import com.wordnik.swagger.annotations.ApiOperation;
 import finanssi.db.GameStateRepository;
 import finanssi.db.GridRepository;
 import finanssi.db.MagRepository;
+import finanssi.model.GameForm;
 import finanssi.model.GameState;
 import finanssi.model.Mag;
 import finanssi.model.Player;
@@ -53,29 +54,27 @@ public class GameController {
 	
 	@RequestMapping(value = "init", method = RequestMethod.POST)
 	@ApiOperation(httpMethod = "POST", value = "Init game")
-	public @ResponseBody GameState init(	@RequestParam(value = "gameId", required = true) String gameId, 
-											@RequestParam(value = "player", required = true) String player, 
+	public @ResponseBody GameState init(	@RequestBody GameForm form, 
 											HttpServletResponse response) {
-		Optional<GameState> lookForGame = games.findByGameId(gameId);
+		Optional<GameState> lookForGame = games.findByGameId(form.getGameId());
 		if(lookForGame.isPresent()) {
 			response.setStatus(HttpServletResponse.SC_FORBIDDEN);
 			return null;
 		}
 		
-		GameState state = new GameState(gameId, grids.findAll());
+		GameState state = new GameState(form.getGameId(), grids.findAll());
 		games.save(state);
 		return state;
 	}
 	
 	@RequestMapping(value = "roll", method = RequestMethod.POST)
 	@ApiOperation(httpMethod = "POST", value = "Roll")
-	public @ResponseBody GameState roll(	@RequestParam(value = "gameId", required = true) String gameId, 
-											@RequestParam(value = "player", required = true) String player, 
+	public @ResponseBody GameState roll(	@RequestBody GameForm form, 
 											HttpServletResponse response) {
-		Optional<GameState> lookForGame = games.findByGameId(gameId);
+		Optional<GameState> lookForGame = games.findByGameId(form.getGameId());
 		if(lookForGame.isPresent()) {
 			GameState state = lookForGame.get();
-			Player findPlayer = state.getPlayers().get(player);
+			Player findPlayer = state.getPlayers().get(form.getPlayer());
 			if(findPlayer == null) {
 				response.setStatus(HttpServletResponse.SC_NOT_FOUND);
 			}
@@ -121,14 +120,14 @@ public class GameController {
 	
 	@RequestMapping(value = "addPlayer", method = RequestMethod.POST)
 	@ApiOperation(httpMethod = "POST", value = "Add player to game")
-	public @ResponseBody GameState addPlayer(	@RequestBody String gameId, 
-												@RequestBody String player, 
+	public @ResponseBody GameState addPlayer(	@RequestBody GameForm form, 
 												HttpServletResponse response) {
-		Optional<GameState> lookForGame = games.findByGameId(gameId);
+		Optional<GameState> lookForGame = games.findByGameId(form.getGameId());
 		if(lookForGame.isPresent()) {
 			response.setStatus(HttpServletResponse.SC_OK);
 			GameState state = lookForGame.get();
 			
+			String player = form.getPlayer();
 			if(!state.getPlayers().containsKey(player)) {
 				state.getPlayers().put(player, new Player(player));
 				games.save(state);
