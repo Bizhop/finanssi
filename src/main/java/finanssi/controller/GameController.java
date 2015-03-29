@@ -92,4 +92,26 @@ public class GameController {
 		response.setStatus(HttpServletResponse.SC_FORBIDDEN);
 		return null;
 	}
+	
+	@RequestMapping(value = "getGames", method = RequestMethod.GET)
+	@ApiOperation(httpMethod = "GET", value = "Get games")
+	public @ResponseBody List<GameState> getGames(HttpServletResponse response) {
+		response.setStatus(HttpServletResponse.SC_OK);
+		return games.findAll();
+	}
+	
+	@RequestMapping(value = "get", method = RequestMethod.GET)
+	@ApiOperation(httpMethod = "GET", value = "Get games")
+	public @ResponseBody GameState get(	@RequestParam(value = "gameId", required = true) String gameId,
+										HttpServletResponse response) {
+		Optional<GameState> lookForGame = games.findByGameId(gameId);
+		if(lookForGame.isPresent()) {
+			response.setStatus(HttpServletResponse.SC_OK);
+			return lookForGame.get();
+		}
+		else {
+			response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+			return null;
+		}
+	}
 }
