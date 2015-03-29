@@ -122,6 +122,7 @@ public class GameController {
 	@ApiOperation(httpMethod = "POST", value = "Add player to game")
 	public @ResponseBody GameState addPlayer(	@RequestBody GameForm form, 
 												HttpServletResponse response) {
+		System.out.println(form);
 		Optional<GameState> lookForGame = games.findByGameId(form.getGameId());
 		if(lookForGame.isPresent()) {
 			response.setStatus(HttpServletResponse.SC_OK);

@@ -16,4 +16,8 @@ public class GameForm {
 	public void setGameId(String gameId) {
 		this.gameId = gameId;
 	}
+	
+	public String toString() {
+		return this.gameId + ", " + this.player;
+	}
 }

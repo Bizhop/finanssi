@@ -2,6 +2,7 @@ package finanssi.model;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
+
 import finanssi.util.Hasher;
 
 /**
@@ -21,6 +22,7 @@ public class User {
 	private String email;
 	private Status status;
 
+	@SuppressWarnings("unused")
 	private User() {}
 
 	@JsonCreator
@@ -28,7 +30,7 @@ public class User {
 		this.userName = userName;
         if(password != null) {
             this.password = Hasher.hash(password);
-            System.out.println("User from json, password = " + this.password);
+            //System.out.println("User from json, password = " + this.password);
         }
         this.email = email;
 	}
