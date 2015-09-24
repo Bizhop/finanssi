@@ -42,19 +42,21 @@
 					<input type="text" class="form-control" id="chatInput" disabled />
 				</div>
 				<div class="row" id="chat">
-					<table id="chatTable" class="table table-striped">
-						<tbody>
-						</tbody>
-					</table>
+					<table id="chatTable" class="table table-striped"><tbody></tbody></table>
 				</div>
 			</div>
 			
 			<div id="alert" style="display: none;">
 				PIELEEN MENI!!!
 			</div>
+			
+			<div>
+				<table id="gameList" class="table table-striped"><tbody></tbody></table>
+			</div>
 
 			<div class="row" id="game" style="display: none;">
 				<img src="images/pelilauta.jpg" />
+				<button id="roll" class="btn" type="button">Roll</button>
 			</div>
 			
 			<div id="newUser" style="display: none;">
@@ -67,6 +69,12 @@
 					<input type="email" id="newUserEmail" class="form-control" placeholder="Email address" required>
 					<button id="register" class="btn btn-lg btn-primary btn-block" type="button">Register</button>
 				</form>
+			</div>
+
+			<div class="row">
+				<div class="text-right">
+					<a href="https://freedns.afraid.org/" target="_new">Free DNS</a>
+				</div>
 			</div>
 			
 		</div>

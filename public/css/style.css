@@ -32,6 +32,10 @@ div#newUser {
 	padding: 10px;
 }
 
+div#game {
+	position: relative;
+}
+
 .modalOverlay {
     position: fixed;
     width: 100%;
@@ -43,4 +47,8 @@ div#newUser {
 
 .floatRight {
 	float: right;
+}
+
+img.playerImages {
+	position: absolute;
 }
